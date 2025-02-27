@@ -1,50 +1,42 @@
-const Carousel = () => {
+export interface ImageSet {
+  key?: string | null;
+  imgs: string[];
+  alts: string[];
+}
+
+const Carousel = (imageSet: ImageSet) => {
+  const { imgs, alts } = imageSet;
   return (
-    <div id="carouselExampleIndicators" className="carousel slide">
+    <div
+      id="carouselExampleIndicators"
+      className="carousel slide"
+      data-ride="carousel"
+    >
       <div className="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide-to="0"
-          className="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
+        {imgs.map((img: string, index: number) => (
+          <button
+            key={index}
+            type="button"
+            className={index == 0 ? "active" : ""}
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to={index}
+            aria-label={"Slide " + (index + 1)}
+          ></button>
+        ))}
       </div>
       <div className="carousel-inner">
-        <div className="carousel-item active">
-          <img
-            src="https://picsum.photos/1000/1000?1"
-            className="d-block w-100"
-            alt="..."
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            src="https://picsum.photos/1000/1000?2"
-            className="d-block w-100"
-            alt="..."
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            src="https://picsum.photos/1000/1000?3"
-            className="d-block w-100"
-            alt="..."
-          />
-        </div>
+        {imgs.map((img: string, index: number) => (
+          <div
+            key={index}
+            className={"carousel-item" + (index == 0 ? " active" : "")}
+          >
+            <img
+              src={img + `?${index}`}
+              className="d-block w-100"
+              alt={alts[index]}
+            />
+          </div>
+        ))}
       </div>
       <button
         className="carousel-control-prev"
