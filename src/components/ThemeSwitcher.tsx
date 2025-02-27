@@ -5,13 +5,13 @@ export interface ImageSetProps {
 
 const ThemeSwitcher = ({
   clickHandler: setGalleryType,
-  galleryType: selectedImageSet,
+  galleryType: type,
 }: ImageSetProps) => {
   return (
     <div>
       <button
         className={`btn btn-lg  my-2 mx-1 ${
-          selectedImageSet == "nature" ? "btn-dark" : "btn-outline-dark"
+          type == "nature" ? "btn-dark" : "btn-outline-dark"
         }`}
         onClick={() => setGalleryType("nature")}
       >
@@ -19,7 +19,7 @@ const ThemeSwitcher = ({
       </button>
       <button
         className={`btn btn-lg  my-2 mx-1 ${
-          selectedImageSet == "city" ? "btn-dark" : "btn-outline-dark"
+          type == "city" ? "btn-dark" : "btn-outline-dark"
         }`}
         onClick={() => setGalleryType("city")}
       >

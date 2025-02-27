@@ -10,6 +10,8 @@ import { ImageSet } from "./components/Carousel";
 function App() {
   const natureImgs: ImageSet = {
     key: "nature",
+    fontClass: "poppins-regular",
+    galleryType: "Nature",
     imgs: [
       "./assets/images/nature/1.jpg",
       "./assets/images/nature/2.jpg",
@@ -21,6 +23,8 @@ function App() {
   };
   const cityImgs: ImageSet = {
     key: "city",
+    fontClass: "roboto-font",
+    galleryType: "City",
     imgs: [
       "/assets/images/city/1.jpg",
       "/assets/images/city/2.jpg",
@@ -34,21 +38,20 @@ function App() {
   const [selectedImageSet, setSelectedImageSet] =
     useState<ImageSet>(natureImgs);
 
-  const [galleryType, setGalleryType] = useState<string>("Nature");
-
   const updateGalleryType = (type: string) => {
     if (type == "nature") {
-      setGalleryType("Nature");
       setSelectedImageSet(natureImgs);
     } else if (type == "city") {
-      setGalleryType("City");
       setSelectedImageSet(cityImgs);
     }
   };
 
   return (
     <>
-      <Heading text={`${galleryType} Gallery`}></Heading>
+      <Heading
+        text={`${selectedImageSet.galleryType} Gallery`}
+        fontClass={selectedImageSet.fontClass!}
+      ></Heading>
       <Carousel
         imgs={selectedImageSet.imgs}
         alts={selectedImageSet.alts}

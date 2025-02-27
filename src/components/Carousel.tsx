@@ -1,5 +1,7 @@
 export interface ImageSet {
-  key?: string | null;
+  key?: string;
+  fontClass?: string;
+  galleryType?: string;
   imgs: string[];
   alts: string[];
 }
